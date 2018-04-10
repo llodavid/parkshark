@@ -1,12 +1,17 @@
 package be.biggerboat.domain.licenseplates;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Table;
 
 @Embeddable
-@Table
+@Table(name = "LICENSE_PLATES")
 public class LicensePlate {
+
+    @Column(name = "LICENSE_PLATE")
     private String plateNumber;
+
+    @Column(name = "ISSUING_COUNTRY")
     private String issuingCountry;
 
     public LicensePlate() {

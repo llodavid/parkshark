@@ -12,25 +12,30 @@ import java.time.LocalDate;
 public class Member {
 
     @Id
+    @SequenceGenerator(name = "member_seq", sequenceName = "member_id_seq", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "member_seq")
+    @Column(name = "MEMBER_ID")
     private int memberId;
 
-    @Column
+    @Column(name = "FIRSTNAME")
     private String memberFirstName;
 
-    @Column
+    @Column(name = "LASTNAME")
     private String memberLastName;
 
-    @Column
+    @Column(name = "EMAIL")
     private String memberEmail;
 
-    @Column
+    @Column(name = "PHONE_NUMBER")
     private String phoneNumber;
 
     @Embedded
     private Address address;
 
+    @Embedded
     private LicensePlate licensePlate;
 
+    @Column(name = "REGISTRATION_DATE")
     private LocalDate registrationDate;
 
     public Member() {
