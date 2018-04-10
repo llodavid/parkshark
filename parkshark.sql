@@ -84,6 +84,26 @@ CONSTRAINT member_pk PRIMARY KEY (member_id),
 CONSTRAINT zipcode_fk FOREIGN KEY (fk_zipcode) REFERENCES zipcodes (zipcode)
 );
 
+CREATE SEQUENCE division_id_seq
+START WITH 1
+INCREMENT BY 1;
+
+CREATE SEQUENCE parking_lot_id_seq
+START WITH 1
+INCREMENT BY 1;
+
+CREATE SEQUENCE contact_person_id_seq
+START WITH 1
+INCREMENT BY 1;
+
+CREATE SEQUENCE member_id_seq
+START WITH 1
+INCREMENT BY 1;
+
+CREATE SEQUENCE building_type_seq
+START WITH 1
+INCREMENT BY 1;
+
 
 drop table zipcodes;
 drop table phonenumbers;
@@ -93,6 +113,13 @@ drop table parking_lots;
 drop table divisions;
 drop table license_plates;
 drop table members;
+
+
+
+
+
+
+
 
 
 
