@@ -1,5 +1,10 @@
 package be.biggerboat.domain;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Table;
+
+@Embeddable
+@Table
 public class Address {
     private String street;
     private String housenumber;
