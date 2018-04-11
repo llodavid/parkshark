@@ -2,8 +2,6 @@ package be.biggerboat.api.members;
 
 import be.biggerboat.domain.members.Member;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import javax.inject.Inject;
 import javax.inject.Named;
 
 @Named
