@@ -1,36 +1,33 @@
-package membertests;
+package be.biggerboat.domain.members;
 
 import be.biggerboat.domain.Address.Address;
 import be.biggerboat.domain.Address.AddressRepository;
 import be.biggerboat.domain.databaseconfig.DatabaseConfig;
 import be.biggerboat.domain.licenseplates.LicensePlateRepository;
-import be.biggerboat.domain.members.Member;
-import be.biggerboat.domain.members.MemberRepository;
-import org.junit.Before;
-import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.jupiter.api.Test;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
-import static org.junit.Assert.*;
+import javax.inject.Inject;
 
-@SpringJUnitConfig
-public class MemberRepositoryTest {
+import static org.junit.jupiter.api.Assertions.*;
+
+@SpringJUnitConfig(DatabaseConfig.class)
+class MemberRepositoryTest {
 
     private MemberRepository memberRepository;
     private AddressRepository addressRepository;
     private LicensePlateRepository licensePlateRepository;
-    private Member member;
 
-    @Autowired
+    @Inject
     public MemberRepositoryTest(MemberRepository memberRepository, AddressRepository addressRepository, LicensePlateRepository licensePlateRepository) {
         this.memberRepository = memberRepository;
         this.addressRepository = addressRepository;
         this.licensePlateRepository = licensePlateRepository;
     }
 
-
-    @Before
-    public void setup() {
-        member = new Member.MemberBuilder()
+    @Test
+    public void registerMember() {
+        Member member = new Member.MemberBuilder()
                 .withMemberFirstName("Bob")
                 .withMemberLastName("Blob")
                 .withMemberEmail("Bobblob@live.com")
@@ -43,13 +40,9 @@ public class MemberRepositoryTest {
                         .build())
                 .withPhoneNumber("0558468")
                 .build();
-    }
 
-    @Test
-    public void registerMember() {
-        Member expected = memberRepository.registerMember(member);
+        memberRepository.registerMember(member);
         assertNotNull(memberRepository);
     }
-
 
 }

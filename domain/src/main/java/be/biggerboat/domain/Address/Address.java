@@ -20,6 +20,9 @@ public class Address {
         this.country = adressBuilder.country;
     }
 
+    public Address() {
+    }
+
     public String getStreet() {
         return street;
     }

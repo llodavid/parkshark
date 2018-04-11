@@ -111,7 +111,7 @@ public class Member {
                     && (isFilledIn(memberEmail)
                         || isFilledIn(phoneNumber))
                     && address != null
-                    && licensePlate != null
+                    //&& licensePlate != null
                     );
         }
 

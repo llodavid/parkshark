@@ -18,4 +18,6 @@ public class MemberRepository {
         return member;
     }
 
+    public MemberRepository() {
+    }
 }
