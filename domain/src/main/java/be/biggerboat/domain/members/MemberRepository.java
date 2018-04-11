@@ -10,6 +10,9 @@ import javax.transaction.Transactional;
 @Transactional
 public class MemberRepository {
 
+    public MemberRepository() {
+    }
+
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -18,6 +21,4 @@ public class MemberRepository {
         return member;
     }
 
-    public MemberRepository() {
-    }
 }

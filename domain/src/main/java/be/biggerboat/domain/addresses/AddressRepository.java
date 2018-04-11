@@ -1,4 +1,4 @@
-package be.biggerboat.domain.Address;
+package be.biggerboat.domain.addresses;
 
 import org.springframework.stereotype.Repository;
 

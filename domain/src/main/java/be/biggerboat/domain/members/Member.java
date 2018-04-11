@@ -1,6 +1,6 @@
 package be.biggerboat.domain.members;
 
-import be.biggerboat.domain.Address.Address;
+import be.biggerboat.domain.addresses.Address;
 import be.biggerboat.domain.licenseplates.LicensePlate;
 import be.biggerboat.utilities.exceptions.ParksharkException;
 

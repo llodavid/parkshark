@@ -1,7 +1,7 @@
 package be.biggerboat.domain.members;
 
-import be.biggerboat.domain.Address.Address;
-import be.biggerboat.domain.Address.AddressRepository;
+import be.biggerboat.domain.addresses.Address;
+import be.biggerboat.domain.addresses.AddressRepository;
 import be.biggerboat.domain.databaseconfig.DatabaseConfig;
 import be.biggerboat.domain.licenseplates.LicensePlateRepository;
 import org.junit.jupiter.api.Test;
