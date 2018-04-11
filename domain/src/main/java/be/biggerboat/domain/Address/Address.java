@@ -1,4 +1,4 @@
-package be.biggerboat.domain;
+package be.biggerboat.domain.Address;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Table;
@@ -18,6 +18,9 @@ public class Address {
         this.zipcode = adressBuilder.zipcode;
         this.city = adressBuilder.city;
         this.country = adressBuilder.country;
+    }
+
+    public Address() {
     }
 
     public String getStreet() {

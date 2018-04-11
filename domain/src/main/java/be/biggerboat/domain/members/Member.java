@@ -1,6 +1,6 @@
 package be.biggerboat.domain.members;
 
-import be.biggerboat.domain.Address;
+import be.biggerboat.domain.Address.Address;
 import be.biggerboat.domain.licenseplates.LicensePlate;
 import be.biggerboat.utilities.exceptions.ParksharkException;
 
@@ -111,7 +111,7 @@ public class Member {
                     && (isFilledIn(memberEmail)
                         || isFilledIn(phoneNumber))
                     && address != null
-                    && licensePlate != null
+                    //&& licensePlate != null
                     );
         }
 
