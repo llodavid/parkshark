@@ -27,10 +27,11 @@ public class MemberService {
 
     public Member createMember(Member member) {
         if (!memberValidator.isValidForCreation(member)) {
-            memberValidator.throwInvalidStateExeption(member, "creation");
-
+            memberValidator.throwInvalidStateException(member, "creation");
         }
         return memberRepository.registerMember(member);
     }
+
+
 
 }
