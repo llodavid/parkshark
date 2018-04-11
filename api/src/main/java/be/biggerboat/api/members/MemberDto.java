@@ -53,24 +53,19 @@ public class MemberDto {
     }
 
     public LicensePlate getLicensePlate() {
-        return licensePlate;
+        return new LicensePlate(plateNumber, issuingCountry);
     }
 
     public LocalDate getRegistrationDate() {
         return registrationDate;
     }
 
-    public String getPlateNumber() {
-        return plateNumber;
+    MemberDto withLicensePlates(LicensePlate licensePlate) {
+        this.plateNumber = licensePlate.getPlateNumber();
+        this.issuingCountry = licensePlate.getIssuingCountry();
+        return this;
     }
 
-    public void setPlateNumber(String plateNumber) {
-        this.plateNumber = plateNumber;
-    }
-
-    public String getIssuingCountry() {
-        return issuingCountry;
-    }
 
     public void setIssuingCountry(String issuingCountry) {
         this.issuingCountry = issuingCountry;
