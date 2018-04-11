@@ -21,7 +21,7 @@ class MemberRepositoryTest {
         this.memberRepository = memberRepository;
     }
 
-    /*
+
     @Test
     public void registerMember() {
         Member member = new Member.MemberBuilder()
@@ -41,6 +41,5 @@ class MemberRepositoryTest {
         memberRepository.registerMember(member);
         assertNotNull(memberRepository);
     }
-    */
 
 }

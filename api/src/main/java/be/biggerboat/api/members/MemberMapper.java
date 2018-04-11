@@ -32,7 +32,7 @@ public class MemberMapper {
                 .withMemberLastName(memberDto.getMemberLastName())
                 .withMemberEmail(memberDto.getMemberEmail())
                 .withPhoneNumber(memberDto.getPhoneNumber())
-                .withAddress(memberMapper.toDomain(memberDto.getAddress()))
+                .withAddress(addressMapper.toDomain(memberDto.getAddress()))
                 .withLicensePlate(memberDto.getLicensePlate())
                 .build();
     }
