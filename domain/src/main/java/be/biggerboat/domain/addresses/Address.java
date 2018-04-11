@@ -1,4 +1,4 @@
-package be.biggerboat.domain.Address;
+package be.biggerboat.domain.addresses;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Table;
@@ -109,4 +109,5 @@ public class Address {
             return this;
         }
     }
+
 }
