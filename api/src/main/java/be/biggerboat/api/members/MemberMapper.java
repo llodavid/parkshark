@@ -1,11 +1,14 @@
 package be.biggerboat.api.members;
 
+import be.biggerboat.api.addresses.AddressMapper;
 import be.biggerboat.domain.members.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import javax.inject.Named;
 
 @Named
 public class MemberMapper {
+
+    private AddressMapper addressMapper;
 
     @Autowired
     public MemberMapper() {
@@ -18,7 +21,7 @@ public class MemberMapper {
                 .withMemberLastName(member.getMemberLastName())
                 .withMemberEmail(member.getMemberEmail())
                 .withPhoneNumber(member.getPhoneNumber())
-                .withAddress(member.getAddress())
+                .withAddress(addressMapper.toDto(member.getAddress()))
                 .withLicensePlate(member.getLicensePlate())
                 .withRegistrationDate(member.getRegistrationDate());
     }
@@ -29,7 +32,7 @@ public class MemberMapper {
                 .withMemberLastName(memberDto.getMemberLastName())
                 .withMemberEmail(memberDto.getMemberEmail())
                 .withPhoneNumber(memberDto.getPhoneNumber())
-                .withAddress(memberDto.getAddress())
+                .withAddress(memberMapper.toDomain(memberDto.getAddress()))
                 .withLicensePlate(memberDto.getLicensePlate())
                 .build();
     }
