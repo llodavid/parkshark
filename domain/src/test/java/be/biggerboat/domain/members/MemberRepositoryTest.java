@@ -1,9 +1,7 @@
 package be.biggerboat.domain.members;
 
 import be.biggerboat.domain.addresses.Address;
-import be.biggerboat.domain.addresses.AddressRepository;
 import be.biggerboat.domain.databaseconfig.DatabaseConfig;
-import be.biggerboat.domain.licenseplates.LicensePlateRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
@@ -16,14 +14,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class MemberRepositoryTest {
 
     private MemberRepository memberRepository;
-    private AddressRepository addressRepository;
-    private LicensePlateRepository licensePlateRepository;
+
 
     @Autowired
-    public MemberRepositoryTest(MemberRepository memberRepository, AddressRepository addressRepository, LicensePlateRepository licensePlateRepository) {
+    public MemberRepositoryTest(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
-        this.addressRepository = addressRepository;
-        this.licensePlateRepository = licensePlateRepository;
     }
 
     /*

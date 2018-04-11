@@ -1,7 +1,5 @@
 package be.biggerboat.service.members;
 
-import be.biggerboat.domain.addresses.AddressRepository;
-import be.biggerboat.domain.licenseplates.LicensePlateRepository;
 import be.biggerboat.domain.members.Member;
 import be.biggerboat.domain.members.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,15 +12,11 @@ import javax.transaction.Transactional;
 @Transactional
 public class MemberService {
     private MemberRepository memberRepository;
-    private AddressRepository addressRepository;
-    private LicensePlateRepository licensePlateRepository;
     private MemberValidator memberValidator;
 
     @Autowired
-    public MemberService(MemberRepository memberRepository, AddressRepository addressRepository, LicensePlateRepository licensePlateRepository) {
+    public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
-        this.addressRepository = addressRepository;
-        this.licensePlateRepository = licensePlateRepository;
     }
 
     public Member createMember(Member member) {
@@ -31,7 +25,5 @@ public class MemberService {
         }
         return memberRepository.registerMember(member);
     }
-
-
 
 }

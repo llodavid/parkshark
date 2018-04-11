@@ -1,7 +1,5 @@
 package be.biggerboat.api.members;
 
-import be.biggerboat.domain.addresses.AddressRepository;
-import be.biggerboat.domain.licenseplates.LicensePlateRepository;
 import be.biggerboat.domain.members.MemberRepository;
 import be.biggerboat.service.members.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
