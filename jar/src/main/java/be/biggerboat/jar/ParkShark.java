@@ -8,5 +8,4 @@ public class ParkShark {
     public static void main(String[] args) {
         SpringApplication.run(ParkShark.class, args);
     }
-
 }

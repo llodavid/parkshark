@@ -5,10 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
-import javax.inject.Inject;
-import javax.transaction.Transactional;
-
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringJUnitConfig(DatabaseConfig.class)
 class DivisionRepositoryTest {
@@ -22,9 +19,9 @@ class DivisionRepositoryTest {
 
     @Test
     void save() {
-//        Division newDivision = new Division("DisneyLand", "DisneyWorld","Mickey Mouse");
-//        divisionRepository.save(newDivision);
-//
-//        assertThat(newDivision.getId()).isNotEqualTo(0);
+        Division newDivision = new Division("DisneyLand", "DisneyWorld","Mickey Mouse");
+        divisionRepository.save(newDivision);
+
+        assertThat(newDivision.getId()).isNotEqualTo(0);
     }
 }
