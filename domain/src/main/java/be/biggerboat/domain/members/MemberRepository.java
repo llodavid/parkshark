@@ -17,4 +17,5 @@ public class MemberRepository {
         entityManager.persist(member);
         return member;
     }
+
 }

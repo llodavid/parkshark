@@ -1,4 +1,4 @@
-package be.biggerboat.domain;
+package be.biggerboat.domain.Address;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Table;
