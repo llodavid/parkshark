@@ -41,4 +41,8 @@ public class Division {
     public String getDirector() {
         return director;
     }
+
+    public int getId() {
+        return id;
+    }
 }
