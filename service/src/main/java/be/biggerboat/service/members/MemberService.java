@@ -16,12 +16,21 @@ public class MemberService {
     private MemberRepository memberRepository;
     private AddressRepository addressRepository;
     private LicensePlateRepository licensePlateRepository;
+    private MemberValidator memberValidator;
 
     @Autowired
     public MemberService(MemberRepository memberRepository, AddressRepository addressRepository, LicensePlateRepository licensePlateRepository) {
         this.memberRepository = memberRepository;
         this.addressRepository = addressRepository;
         this.licensePlateRepository = licensePlateRepository;
+    }
+
+    public Member createMember(Member member) {
+        if (!memberValidator.isValidForCreation(member)) {
+            memberValidator.throwInvalidStateExeption(member, "creation");
+
+        }
+        return memberRepository.registerMember(member);
     }
 
 }

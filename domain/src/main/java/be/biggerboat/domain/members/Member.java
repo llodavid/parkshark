@@ -15,7 +15,7 @@ public class Member {
     @SequenceGenerator(name = "member_seq", sequenceName = "member_id_seq", initialValue = 1, allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "member_seq")
     @Column(name = "MEMBER_ID")
-    private int memberId;
+    private String memberId;
 
     @Column(name = "FIRSTNAME")
     private String memberFirstName;
@@ -42,6 +42,7 @@ public class Member {
     }
 
     public Member(MemberBuilder memberBuilder) {
+        this.memberId = memberBuilder.memberId;
         this.memberFirstName = memberBuilder.memberFirstName;
         this.memberLastName = memberBuilder.memberLastName;
         this.memberEmail = memberBuilder.memberEmail;
@@ -51,7 +52,7 @@ public class Member {
         this.registrationDate = memberBuilder.registrationDate;
     }
 
-    public int getMemberId() {
+    public String getMemberId() {
         return memberId;
     }
 
@@ -97,6 +98,7 @@ public class Member {
     }
 
     public static class MemberBuilder{
+        private String memberId;
         private String memberFirstName;
         private String memberLastName;
         private String memberEmail;
@@ -117,6 +119,11 @@ public class Member {
 
         private boolean isFilledIn(String field){
             return field != null && !field.trim().equals("");
+        }
+
+        public MemberBuilder withMemberId(String memberId){
+            this.memberId = memberId;
+            return this;
         }
 
         public MemberBuilder withMemberFirstName(String memberFirstName){
