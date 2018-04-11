@@ -66,7 +66,7 @@ public class Address {
                 addDefaultCountryIfNotSet();
                 return new Address(this);
             } else {
-                throw new IllegalArgumentException("Please provide all the necessary arguments for the Address.");
+                throw new IllegalArgumentException(   "Please provide all the necessary arguments for the Address.");
             }
         }
 
