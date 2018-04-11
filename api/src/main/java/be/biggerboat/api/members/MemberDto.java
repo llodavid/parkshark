@@ -1,5 +1,6 @@
 package be.biggerboat.api.members;
 
+import be.biggerboat.api.addresses.AddressDto;
 import be.biggerboat.domain.addresses.Address;
 import be.biggerboat.domain.licenseplates.LicensePlate;
 import be.biggerboat.domain.members.Member;
@@ -14,9 +15,14 @@ public class MemberDto {
     private String memberLastName;
     private String memberEmail;
     private String phoneNumber;
-    private Address address;
-    private LicensePlate licensePlate;
+    private AddressDto address;
     private LocalDate registrationDate;
+
+    private LicensePlate licensePlate;
+
+    private String plateNumber;
+    private String issuingCountry;
+
 
     public MemberDto() {
     }
@@ -42,7 +48,7 @@ public class MemberDto {
         return phoneNumber;
     }
 
-    public Address getAddress() {
+    public AddressDto getAddress() {
         return address;
     }
 
@@ -52,6 +58,22 @@ public class MemberDto {
 
     public LocalDate getRegistrationDate() {
         return registrationDate;
+    }
+
+    public String getPlateNumber() {
+        return plateNumber;
+    }
+
+    public void setPlateNumber(String plateNumber) {
+        this.plateNumber = plateNumber;
+    }
+
+    public String getIssuingCountry() {
+        return issuingCountry;
+    }
+
+    public void setIssuingCountry(String issuingCountry) {
+        this.issuingCountry = issuingCountry;
     }
 
     public MemberDto withMemberId(String memberId) {
@@ -79,7 +101,7 @@ public class MemberDto {
         return this;
     }
 
-    public MemberDto withAddress(Address address) {
+    public MemberDto withAddress(AddressDto address) {
         this.address = address;
         return this;
     }
