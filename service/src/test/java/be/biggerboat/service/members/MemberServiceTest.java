@@ -1,6 +1,7 @@
 package be.biggerboat.service.members;
 
 import be.biggerboat.domain.addresses.Address;
+import be.biggerboat.domain.addresses.Zipcode;
 import be.biggerboat.domain.databaseconfig.DatabaseConfig;
 import be.biggerboat.domain.licenseplates.LicensePlate;
 import be.biggerboat.domain.members.Member;
@@ -33,8 +34,7 @@ class MemberServiceTest {
                 .withAddress(new Address.AddressBuilder()
                         .withStreet("Kersktraat")
                         .withHousenumber("24")
-                        .withZipcode("5436")
-                        .withCity("Blobcity")
+                        .withZipcode(new Zipcode("5436", "53454"))
                         .withCountry("Blobland")
                         .build())
                 .withPhoneNumber("0558468")

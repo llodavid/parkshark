@@ -32,9 +32,9 @@ public class Member {
     @Embedded
     private Address address;
 
-    @OneToOne(cascade = {CascadeType.PERSIST}, optional = true)
-    @JoinColumn(name = "FK_MEMBER_ID")
-    private LicensePlate licensePlate;
+//    @OneToOne(cascade = {CascadeType.PERSIST}, optional = true)
+//    @JoinColumn(name = "FK_MEMBER_ID")
+//    private LicensePlate licensePlate;
 
     @Column(name = "REGISTRATION_DATE")
     private LocalDate registrationDate;
@@ -48,7 +48,7 @@ public class Member {
         this.memberEmail = memberBuilder.memberEmail;
         this.phoneNumber = memberBuilder.phoneNumber;
         this.address = memberBuilder.address;
-        this.licensePlate = memberBuilder.licensePlate;
+       // this.licensePlate = memberBuilder.licensePlate;
         this.registrationDate = memberBuilder.registrationDate;
     }
 
@@ -76,9 +76,9 @@ public class Member {
         return address;
     }
 
-    public LicensePlate getLicensePlate() {
-        return licensePlate;
-    }
+   // public LicensePlate getLicensePlate() {
+//        return licensePlate;
+//    }
 
     public LocalDate getRegistrationDate() {
         return registrationDate;
@@ -92,7 +92,7 @@ public class Member {
                 ", memberEmail='" + memberEmail + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", address=" + address + '\'' +
-                ", licensePlate=" + licensePlate + '\'' +
+                //", licensePlate=" + licensePlate + '\'' +
                 ", registrationDate=" + registrationDate +
                 '}';
     }
@@ -112,7 +112,7 @@ public class Member {
                     && (isFilledIn(memberEmail)
                     || isFilledIn(phoneNumber))
                     //&& address != null
-                    && licensePlate != null
+                    //&& licensePlate != null
             );
         }
 
