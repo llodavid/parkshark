@@ -12,7 +12,8 @@ public class MemberMapper {
     private AddressMapper addressMapper;
 
     @Autowired
-    public MemberMapper() {
+    public MemberMapper(AddressMapper addressMapper) {
+        this.addressMapper=addressMapper;
     }
 
     public MemberDto toDto(Member member) {
