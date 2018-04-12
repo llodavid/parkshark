@@ -43,7 +43,6 @@ public class Member {
     }
 
     public Member(MemberBuilder memberBuilder) {
-        this.memberId = memberBuilder.memberId;
         this.memberFirstName = memberBuilder.memberFirstName;
         this.memberLastName = memberBuilder.memberLastName;
         this.memberEmail = memberBuilder.memberEmail;
@@ -99,7 +98,6 @@ public class Member {
     }
 
     public static class MemberBuilder {
-        private int memberId;
         private String memberFirstName;
         private String memberLastName;
         private String memberEmail;
@@ -122,10 +120,6 @@ public class Member {
             return field != null && !field.trim().equals("");
         }
 
-        public MemberBuilder withMemberId(int memberId) {
-            this.memberId = memberId;
-            return this;
-        }
 
         public MemberBuilder withMemberFirstName(String memberFirstName) {
             this.memberFirstName = memberFirstName;
