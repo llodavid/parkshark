@@ -32,7 +32,7 @@ public class Member {
     @Embedded
     private Address address;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST}, optional = true)
+    @OneToOne(cascade = {CascadeType.PERSIST}, optional = true)
     @JoinColumn(name = "FK_MEMBER_ID")
     private LicensePlate licensePlate;
 
@@ -114,7 +114,7 @@ public class Member {
                     && (isFilledIn(memberEmail)
                     || isFilledIn(phoneNumber))
                     //&& address != null
-                    //&& licensePlate != null
+                    && licensePlate != null
             );
         }
 

@@ -1,6 +1,11 @@
 package be.biggerboat.domain.divisions;
 
+import be.biggerboat.utilities.exceptions.ParksharkException;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "DIVISIONS")
@@ -21,13 +26,27 @@ public class Division {
     @Column(name = "DIRECTOR")
     private String director;
 
+    @OneToMany (cascade=CascadeType.PERSIST)
+    @JoinColumn(name="PARENT_DIVISION_ID")
+    private List<Division> subDivisions;
+
     public Division() {
     }
 
     public Division(String divisionName, String originalName, String director) {
-        this.divisionName = divisionName;
-        this.originalName = originalName;
-        this.director = director;
+        if (isFilledIn(divisionName) && isFilledIn(originalName) && isFilledIn(director)) {
+            this.divisionName = divisionName;
+            this.originalName = originalName;
+            this.director = director;
+            subDivisions = new ArrayList<>();
+        }
+        else{
+            throw new ParksharkException("Please fill in all the required fields.");
+        }
+    }
+
+    public void addSubDivision(Division subDivision) {
+        subDivisions.add(subDivision);
     }
 
     public String getDivisionName() {
@@ -44,5 +63,26 @@ public class Division {
 
     public int getId() {
         return id;
+    }
+
+    public boolean isFilledIn(String data){
+        return data != null && !data.isEmpty();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Division division = (Division) o;
+        return getId() == division.getId() &&
+                Objects.equals(getDivisionName(), division.getDivisionName()) &&
+                Objects.equals(getOriginalName(), division.getOriginalName()) &&
+                Objects.equals(getDirector(), division.getDirector());
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(getId(), getDivisionName(), getOriginalName(), getDirector());
     }
 }

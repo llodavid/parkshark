@@ -6,33 +6,13 @@ import javax.inject.Named;
 
 @Named
 public class AddressDto {
-    private String street;
-    private String housenumber;
-    private String zipcode;
-    private String city;
-    private String country;
+    public String street;
+    public String housenumber;
+    public String zipcode;
+    public String city;
+    public String country;
 
     public AddressDto() {
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public String getHousenumber() {
-        return housenumber;
-    }
-
-    public String getZipcode() {
-        return zipcode;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public String getCountry() {
-        return country;
     }
 
     public AddressDto withStreet(String street) {
