@@ -30,7 +30,7 @@ public class MemberValidator   {
                 || isEmptyOrNull(member.getAddress().getCountry())
                 || isNull(member.getMemberEmail())
                 || isNull(member.getPhoneNumber())
-                || isNull(member.getLicensePlate())
+                //|| isNull(member.getLicensePlate())
                 || isNull(member.getRegistrationDate());
     }
 
