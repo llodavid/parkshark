@@ -28,6 +28,15 @@ public class DivisionController {
                 divisionService.createDivision(
                         divisionMapper.dtoToDivision(divisionDTO)));
     }
+
+    @PostMapping(path = "/{divisionId}", consumes = "application/json", produces = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public DivisionDTO createSubDivision(@PathVariable int divisionId, @RequestBody DivisionDTO divisionDTO){
+        return divisionMapper.divisionToDTO(
+                divisionService.createSubDivision(divisionId,
+                        divisionMapper.dtoToDivision(divisionDTO)));
+    }
+
     @GetMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public List<DivisionDTO> readDivisions() {

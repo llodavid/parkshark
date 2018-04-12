@@ -24,4 +24,8 @@ public class DivisionRepository {
         return entityManager.createQuery("from Division",Division.class)
                 .getResultList();
     }
+
+    public Division getDivision(int divisionId) {
+        return entityManager.find(Division.class,divisionId);
+    }
 }

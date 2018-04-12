@@ -2,21 +2,17 @@ package be.biggerboat.service;
 
 import be.biggerboat.domain.databaseconfig.DatabaseConfig;
 import be.biggerboat.domain.divisions.Division;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace.NONE;
 
 @SpringJUnitConfig(DatabaseConfig.class)
-@DataJpaTest
-@AutoConfigureTestDatabase(replace = NONE)
+//@DataJpaTest
+//@AutoConfigureTestDatabase(replace = NONE)
 class DivisionServiceTest {
 
     private DivisionService divisionService;
@@ -48,5 +44,17 @@ class DivisionServiceTest {
         List<Division> divisions = divisionService.readDivisions();
 
         assertThat(divisions).contains(division1, division2, division3);
+    }
+
+    @Test
+    void addSubDivision_happyPath(){
+        Division division = new Division("Dad", "SubTest", "David");
+        Division subDivision = new Division("Son", "subTestDiv", "Amaury");
+
+        divisionService.createDivision(division);
+        int dadId = division.getId();
+
+        assertThat(divisionService.createSubDivision(dadId, subDivision).getId()).isNotEqualTo(0);
+
     }
 }
