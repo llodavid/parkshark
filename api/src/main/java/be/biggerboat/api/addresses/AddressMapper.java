@@ -10,7 +10,6 @@ public class AddressMapper {
 
     @Autowired
     public AddressMapper() {
-
     }
 
     public AddressDto toDto(Address address) {

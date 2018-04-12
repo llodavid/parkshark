@@ -1,6 +1,7 @@
 package be.biggerboat.api.members;
 
 import be.biggerboat.api.addresses.AddressDto;
+import be.biggerboat.api.licenseplates.LicensePlateDto;
 import be.biggerboat.domain.addresses.Address;
 import be.biggerboat.domain.licenseplates.LicensePlate;
 import be.biggerboat.domain.members.Member;
@@ -10,6 +11,7 @@ import javax.persistence.Embedded;
 import java.time.LocalDate;
 
 public class MemberDto {
+
     public int memberId;
     public String memberFirstName;
     public String memberLastName;
@@ -17,11 +19,7 @@ public class MemberDto {
     public String phoneNumber;
     public AddressDto address;
     public LocalDate registrationDate;
-
-    public LicensePlate licensePlate;
-
-    public String plateNumber;
-    public String issuingCountry;
+    public LicensePlateDto licensePlate;
 
 
     public MemberDto() {
@@ -58,9 +56,8 @@ public class MemberDto {
         return this;
     }
 
-    MemberDto withLicensePlate(LicensePlate licensePlate) {
-        this.plateNumber = licensePlate.getPlateNumber();
-        this.issuingCountry = licensePlate.getIssuingCountry();
+    public MemberDto withLicensePlate(LicensePlateDto licensePlate) {
+        this.licensePlate = licensePlate;
         return this;
     }
 
