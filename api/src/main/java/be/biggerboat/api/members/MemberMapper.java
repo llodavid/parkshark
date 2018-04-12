@@ -8,6 +8,7 @@ import javax.inject.Named;
 @Named
 public class MemberMapper {
 
+
     private AddressMapper addressMapper;
 
     @Autowired
@@ -32,7 +33,7 @@ public class MemberMapper {
                 .withMemberLastName(memberDto.getMemberLastName())
                 .withMemberEmail(memberDto.getMemberEmail())
                 .withPhoneNumber(memberDto.getPhoneNumber())
-                //.withAddress(addressMapper.toDomain(memberDto.getAddress()))
+                .withAddress(addressMapper.toDomain(memberDto.getAddress()))
                 .withLicensePlate(memberDto.getLicensePlate())
                 .build();
     }

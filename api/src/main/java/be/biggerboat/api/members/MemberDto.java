@@ -27,7 +27,6 @@ public class MemberDto {
     public MemberDto() {
     }
 
-
     public int getMemberId() {
         return memberId;
     }
@@ -58,12 +57,6 @@ public class MemberDto {
 
     public LocalDate getRegistrationDate() {
         return registrationDate;
-    }
-
-    MemberDto withLicensePlates(LicensePlate licensePlate) {
-        this.plateNumber = licensePlate.getPlateNumber();
-        this.issuingCountry = licensePlate.getIssuingCountry();
-        return this;
     }
 
 
@@ -101,8 +94,9 @@ public class MemberDto {
         return this;
     }
 
-    public MemberDto withLicensePlate(LicensePlate licensePlate) {
-        this.licensePlate = licensePlate;
+    MemberDto withLicensePlate(LicensePlate licensePlate) {
+        this.plateNumber = licensePlate.getPlateNumber();
+        this.issuingCountry = licensePlate.getIssuingCountry();
         return this;
     }
 
