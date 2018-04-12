@@ -27,7 +27,7 @@ public class MemberMapper {
                 .withMemberEmail(member.getMemberEmail())
                 .withPhoneNumber(member.getPhoneNumber())
                 .withAddress(addressMapper.toDto(member.getAddress()))
-                .withLicensePlate(licensePlateMapper.toDto((member.getLicensePlate())))
+                //.withLicensePlate(licensePlateMapper.toDto((member.getLicensePlate())))
                 .withRegistrationDate(member.getRegistrationDate());
     }
 
@@ -38,7 +38,7 @@ public class MemberMapper {
                 .withMemberEmail(memberDto.memberEmail)
                 .withPhoneNumber(memberDto.phoneNumber)
                 .withAddress(addressMapper.toDomain(memberDto.address))
-                .withLicensePlate(licensePlateMapper.toDomain(memberDto.licensePlate))
+                //.withLicensePlate(licensePlateMapper.toDomain(memberDto.licensePlate))
                 .build();
     }
 

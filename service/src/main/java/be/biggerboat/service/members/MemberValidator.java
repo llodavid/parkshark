@@ -25,14 +25,12 @@ public class MemberValidator   {
                 || isEmptyOrNull(member.getMemberFirstName())
                 || isEmptyOrNull(member.getMemberLastName())
                 || isNull(member.getAddress())
-                || isEmptyOrNull(member.getAddress().getCity())
                 || isEmptyOrNull(member.getAddress().getHousenumber())
                 || isEmptyOrNull(member.getAddress().getStreet())
-                || isEmptyOrNull(member.getAddress().getZipcode())
                 || isEmptyOrNull(member.getAddress().getCountry())
                 || isNull(member.getMemberEmail())
                 || isNull(member.getPhoneNumber())
-                || isNull(member.getLicensePlate())
+                //|| isNull(member.getLicensePlate())
                 || isNull(member.getRegistrationDate());
     }
 

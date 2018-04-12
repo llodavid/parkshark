@@ -1,22 +1,26 @@
 package be.biggerboat.domain.addresses;
 
-import javax.persistence.Embeddable;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Embeddable
 public class Address {
+
+    @Column(name = "STREET")
     private String street;
+    @Column(name = "HOUSENUMBER")
     private String housenumber;
-    private String zipcode;
-    private String city;
+    @Column(name = "Country")
     private String country;
 
-    private Address(AddressBuilder adressBuilder) {
-        this.street = adressBuilder.street;
-        this.housenumber = adressBuilder.housenumber;
-        this.zipcode = adressBuilder.zipcode;
-        this.city = adressBuilder.city;
-        this.country = adressBuilder.country;
+    @ManyToOne (cascade = CascadeType.PERSIST)
+    @JoinColumn (name = "FK_ZIPCODE")
+    private Zipcode zipcode;
+
+    private Address(AddressBuilder addressBuilder) {
+        this.street = addressBuilder.street;
+        this.housenumber = addressBuilder.housenumber;
+        this.country = addressBuilder.country;
+        this.zipcode = addressBuilder.zipcode;
     }
 
     public Address() {
@@ -30,34 +34,27 @@ public class Address {
         return housenumber;
     }
 
-    public String getZipcode() {
-        return zipcode;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
     public String getCountry() {
         return country;
+    }
+
+    public Zipcode getZipcode() {
+        return zipcode;
     }
 
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer();
-        sb.append("\tcity='").append(city).append('\'');
         sb.append(", \n\tstreet='").append(street).append('\'');
         sb.append(", \n\thousenumber='").append(housenumber).append('\'');
-        sb.append(", \n\tzipcode='").append(zipcode).append('\'');
         return sb.toString();
     }
 
     public static class AddressBuilder {
         private String street;
         private String housenumber;
-        private String zipcode;
-        private String city;
         private String country;
+        private Zipcode zipcode;
 
         public static AddressBuilder buildAddress() {
             return new AddressBuilder();
@@ -79,8 +76,7 @@ public class Address {
         }
 
         private boolean allFieldsSet() {
-            return street != null && housenumber != null
-                    && zipcode != null && city != null;
+            return street != null && housenumber != null;
         }
 
         public AddressBuilder withHousenumber(String housenumber) {
@@ -93,13 +89,8 @@ public class Address {
             return this;
         }
 
-        public AddressBuilder withZipcode(String zipcode) {
+        public AddressBuilder withZipcode (Zipcode zipcode){
             this.zipcode = zipcode;
-            return this;
-        }
-
-        public AddressBuilder withCity(String city) {
-            this.city = city;
             return this;
         }
 

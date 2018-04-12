@@ -32,9 +32,9 @@ public class Member {
     @Embedded
     private Address address;
 
-    @OneToOne(cascade = {CascadeType.PERSIST}, optional = true)
-    @JoinColumn(name = "FK_MEMBER_ID")
-    private LicensePlate licensePlate;
+//    @OneToOne(cascade = {CascadeType.PERSIST}, optional = true)
+//    @JoinColumn(name = "FK_MEMBER_ID")
+//    private LicensePlate licensePlate;
 
     @Column(name = "REGISTRATION_DATE")
     private LocalDate registrationDate;
@@ -43,13 +43,12 @@ public class Member {
     }
 
     public Member(MemberBuilder memberBuilder) {
-        this.memberId = memberBuilder.memberId;
         this.memberFirstName = memberBuilder.memberFirstName;
         this.memberLastName = memberBuilder.memberLastName;
         this.memberEmail = memberBuilder.memberEmail;
         this.phoneNumber = memberBuilder.phoneNumber;
         this.address = memberBuilder.address;
-        this.licensePlate = memberBuilder.licensePlate;
+       // this.licensePlate = memberBuilder.licensePlate;
         this.registrationDate = memberBuilder.registrationDate;
     }
 
@@ -77,9 +76,9 @@ public class Member {
         return address;
     }
 
-    public LicensePlate getLicensePlate() {
-        return licensePlate;
-    }
+   // public LicensePlate getLicensePlate() {
+//        return licensePlate;
+//    }
 
     public LocalDate getRegistrationDate() {
         return registrationDate;
@@ -93,13 +92,12 @@ public class Member {
                 ", memberEmail='" + memberEmail + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", address=" + address + '\'' +
-                ", licensePlate=" + licensePlate + '\'' +
+                //", licensePlate=" + licensePlate + '\'' +
                 ", registrationDate=" + registrationDate +
                 '}';
     }
 
     public static class MemberBuilder {
-        private int memberId;
         private String memberFirstName;
         private String memberLastName;
         private String memberEmail;
@@ -114,7 +112,7 @@ public class Member {
                     && (isFilledIn(memberEmail)
                     || isFilledIn(phoneNumber))
                     //&& address != null
-                    && licensePlate != null
+                    //&& licensePlate != null
             );
         }
 
@@ -122,10 +120,6 @@ public class Member {
             return field != null && !field.trim().equals("");
         }
 
-        public MemberBuilder withMemberId(int memberId) {
-            this.memberId = memberId;
-            return this;
-        }
 
         public MemberBuilder withMemberFirstName(String memberFirstName) {
             this.memberFirstName = memberFirstName;

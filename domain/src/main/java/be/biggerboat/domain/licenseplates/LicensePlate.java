@@ -10,7 +10,7 @@ import javax.transaction.Transactional;
 public class LicensePlate {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue (strategy = GenerationType.AUTO)
     @Column(name = "LICENSE_PLATE")
     private String plateNumber;
 
