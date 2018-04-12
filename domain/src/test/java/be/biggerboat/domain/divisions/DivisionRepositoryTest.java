@@ -1,6 +1,7 @@
 package be.biggerboat.domain.divisions;
 
 import be.biggerboat.domain.databaseconfig.DatabaseConfig;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -45,5 +46,16 @@ class DivisionRepositoryTest {
         List<Division> divisions = divisionRepository.getDivisions();
 
         assertThat(divisions).contains(division1, division2, division3);
+    }
+
+    @Test
+    void getDivision(){
+        Division division = new Division("G1", "ONG1", "dirg1");
+
+        divisionRepository.save(division);
+
+        int actualId = division.getId();
+
+        assertThat(divisionRepository.getDivision(actualId)).isEqualTo(division);
     }
 }

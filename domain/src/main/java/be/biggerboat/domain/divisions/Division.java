@@ -3,6 +3,8 @@ package be.biggerboat.domain.divisions;
 import be.biggerboat.utilities.exceptions.ParksharkException;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -24,6 +26,10 @@ public class Division {
     @Column(name = "DIRECTOR")
     private String director;
 
+    @OneToMany (cascade=CascadeType.PERSIST)
+    @JoinColumn(name="PARENT_DIVISION_ID")
+    private List<Division> subDivisions;
+
     public Division() {
     }
 
@@ -32,10 +38,15 @@ public class Division {
             this.divisionName = divisionName;
             this.originalName = originalName;
             this.director = director;
+            subDivisions = new ArrayList<>();
         }
         else{
             throw new ParksharkException("Please fill in all the required fields.");
         }
+    }
+
+    public void addSubDivision(Division subDivision) {
+        subDivisions.add(subDivision);
     }
 
     public String getDivisionName() {

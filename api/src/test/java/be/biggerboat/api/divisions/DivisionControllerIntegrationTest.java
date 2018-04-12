@@ -78,6 +78,25 @@ class DivisionControllerIntegrationTest {
         assertThat(divisions).contains(divisionDTO1, divisionDTO2, divisionDTO3);
     }
 
+    @Test
+    public void createSubDivision() {
+        Division division = new Division("F1", "ONF1", "dirf1");
+
+        divisionRepository.save(division);
+
+        DivisionDTO divisionDTO = new TestRestTemplate()
+                .postForObject(String.format("http://localhost:%s/%s/%s", port, "divisions",division.getId()),
+                        new DivisionDTO().withDivisionName("SuperAwesomeDivision")
+                                .withOriginalName("Okayish Division")
+                                .withDirector("Division Master David"),
+                        DivisionDTO.class);
+
+        assertThat(divisionDTO.id).isNotEqualTo(0);
+        assertThat(divisionDTO.divisionName).isEqualTo("SuperAwesomeDivision");
+        assertThat(divisionDTO.originalName).isEqualTo("Okayish Division");
+        assertThat(divisionDTO.director).isEqualTo("Division Master David");
+    }
+
     @SpringBootApplication(scanBasePackages = "be.biggerboat")
     public static class DivisionControllerIntegrationTestRunner{
         public static void main(String[] args) {
