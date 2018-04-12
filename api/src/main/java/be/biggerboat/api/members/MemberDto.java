@@ -1,6 +1,7 @@
 package be.biggerboat.api.members;
 
 import be.biggerboat.api.addresses.AddressDto;
+import be.biggerboat.api.addresses.AddressMapper;
 import be.biggerboat.domain.addresses.Address;
 import be.biggerboat.domain.licenseplates.LicensePlate;
 import be.biggerboat.domain.members.Member;
@@ -22,10 +23,6 @@ public class MemberDto {
 
     private String plateNumber;
     private String issuingCountry;
-
-
-    public MemberDto() {
-    }
 
 
     public int getMemberId() {
