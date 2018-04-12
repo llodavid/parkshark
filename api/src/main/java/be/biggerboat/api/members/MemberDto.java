@@ -10,63 +10,23 @@ import javax.persistence.Embedded;
 import java.time.LocalDate;
 
 public class MemberDto {
-    private int memberId;
-    private String memberFirstName;
-    private String memberLastName;
-    private String memberEmail;
-    private String phoneNumber;
-    private AddressDto address;
-    private LocalDate registrationDate;
+    public int memberId;
+    public String memberFirstName;
+    public String memberLastName;
+    public String memberEmail;
+    public String phoneNumber;
+    public AddressDto address;
+    public LocalDate registrationDate;
 
-    private LicensePlate licensePlate;
+    public LicensePlate licensePlate;
 
-    private String plateNumber;
-    private String issuingCountry;
+    public String plateNumber;
+    public String issuingCountry;
 
 
     public MemberDto() {
     }
 
-
-    public int getMemberId() {
-        return memberId;
-    }
-
-    public String getMemberFirstName() {
-        return memberFirstName;
-    }
-
-    public String getMemberLastName() {
-        return memberLastName;
-    }
-
-    public String getMemberEmail() {
-        return memberEmail;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public AddressDto getAddress() {
-        return address;
-    }
-
-    public LocalDate getRegistrationDate() {
-        return registrationDate;
-    }
-
-    public LicensePlate getLicensePlate() {
-        return new LicensePlate(plateNumber, issuingCountry);
-    }
-
-    public void setPlateNumber(String plateNumber) {
-        this.plateNumber = plateNumber;
-    }
-
-    public void setIssuingCountry(String issuingCountry) {
-        this.issuingCountry = issuingCountry;
-    }
 
     public MemberDto withMemberId(int memberId) {
         this.memberId = memberId;
@@ -98,19 +58,14 @@ public class MemberDto {
         return this;
     }
 
-    public MemberDto withLicensePlate(LicensePlate licensePlate) {
-        this.licensePlate = licensePlate;
+    MemberDto withLicensePlate(LicensePlate licensePlate) {
+        this.plateNumber = licensePlate.getPlateNumber();
+        this.issuingCountry = licensePlate.getIssuingCountry();
         return this;
     }
 
     public MemberDto withRegistrationDate(LocalDate registrationDate) {
         this.registrationDate = registrationDate;
-        return this;
-    }
-
-    public MemberDto withLicensePlates(LicensePlate licensePlate) {
-        this.plateNumber = licensePlate.getPlateNumber();
-        this.issuingCountry = licensePlate.getIssuingCountry();
         return this;
     }
 

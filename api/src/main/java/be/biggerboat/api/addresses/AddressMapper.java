@@ -24,11 +24,11 @@ public class AddressMapper {
 
     public Address toDomain(AddressDto addressDto) {
         return new Address.AddressBuilder()
-                .withStreet(addressDto.getStreet())
-                .withHousenumber(addressDto.getHousenumber())
-                .withZipcode(addressDto.getZipcode())
-                .withCity(addressDto.getCity())
-                .withCountry(addressDto.getCountry())
+                .withStreet(addressDto.street)
+                .withHousenumber(addressDto.housenumber)
+                .withZipcode(addressDto.zipcode)
+                .withCity(addressDto.city)
+                .withCountry(addressDto.country)
                 .build();
     }
 
