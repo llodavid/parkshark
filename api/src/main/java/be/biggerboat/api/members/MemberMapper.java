@@ -30,12 +30,12 @@ public class MemberMapper {
 
     public Member toDomain(MemberDto memberDto) {
         return new Member.MemberBuilder()
-                .withMemberFirstName(memberDto.getMemberFirstName())
-                .withMemberLastName(memberDto.getMemberLastName())
-                .withMemberEmail(memberDto.getMemberEmail())
-                .withPhoneNumber(memberDto.getPhoneNumber())
-                .withAddress(addressMapper.toDomain(memberDto.getAddress()))
-                .withLicensePlate(memberDto.getLicensePlate())
+                .withMemberFirstName(memberDto.memberFirstName)
+                .withMemberLastName(memberDto.memberLastName)
+                .withMemberEmail(memberDto.memberEmail)
+                .withPhoneNumber(memberDto.phoneNumber)
+                .withAddress(addressMapper.toDomain(memberDto.address))
+                .withLicensePlate(memberDto.licensePlate)
                 .build();
     }
 
