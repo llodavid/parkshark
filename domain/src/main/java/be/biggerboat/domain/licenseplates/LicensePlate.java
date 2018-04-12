@@ -1,13 +1,13 @@
 package be.biggerboat.domain.licenseplates;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-@Embeddable
+@Entity
 @Table(name = "LICENSE_PLATES")
 public class LicensePlate {
 
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "LICENSE_PLATE")
     private String plateNumber;
 
