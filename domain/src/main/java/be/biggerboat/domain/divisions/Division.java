@@ -3,6 +3,7 @@ package be.biggerboat.domain.divisions;
 import be.biggerboat.utilities.exceptions.ParksharkException;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "DIVISIONS")
@@ -55,5 +56,22 @@ public class Division {
 
     public boolean isFilledIn(String data){
         return data != null && !data.isEmpty();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Division division = (Division) o;
+        return getId() == division.getId() &&
+                Objects.equals(getDivisionName(), division.getDivisionName()) &&
+                Objects.equals(getOriginalName(), division.getOriginalName()) &&
+                Objects.equals(getDirector(), division.getDirector());
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(getId(), getDivisionName(), getOriginalName(), getDirector());
     }
 }

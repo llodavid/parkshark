@@ -2,10 +2,11 @@ package be.biggerboat.api.divisions;
 
 import be.biggerboat.service.DivisionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/divisions")
@@ -21,9 +22,17 @@ public class DivisionController {
     }
 
     @PostMapping(consumes = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
     public DivisionDTO createDivision(@RequestBody DivisionDTO divisionDTO) {
         return divisionMapper.divisionToDTO(
                 divisionService.createDivision(
                         divisionMapper.dtoToDivision(divisionDTO)));
+    }
+    @GetMapping(produces = "application/json")
+    @ResponseStatus(HttpStatus.OK)
+    public List<DivisionDTO> readDivisions() {
+        return divisionService.readDivisions().stream()
+                .map(division -> divisionMapper.divisionToDTO(division))
+                .collect(Collectors.toList());
     }
 }
