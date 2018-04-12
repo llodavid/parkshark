@@ -10,7 +10,7 @@ import javax.persistence.Embedded;
 import java.time.LocalDate;
 
 public class MemberDto {
-    private String memberId;
+    private int memberId;
     private String memberFirstName;
     private String memberLastName;
     private String memberEmail;
@@ -28,7 +28,7 @@ public class MemberDto {
     }
 
 
-    public String getMemberId() {
+    public int getMemberId() {
         return memberId;
     }
 
@@ -71,7 +71,7 @@ public class MemberDto {
         this.issuingCountry = issuingCountry;
     }
 
-    public MemberDto withMemberId(String memberId) {
+    public MemberDto withMemberId(int memberId) {
         this.memberId = memberId;
         return this;
     }
