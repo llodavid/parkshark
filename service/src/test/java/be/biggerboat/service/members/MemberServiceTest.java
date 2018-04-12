@@ -1,30 +1,31 @@
-package be.biggerboat.domain.members;
+package be.biggerboat.service.members;
 
 import be.biggerboat.domain.addresses.Address;
 import be.biggerboat.domain.databaseconfig.DatabaseConfig;
 import be.biggerboat.domain.licenseplates.LicensePlate;
+import be.biggerboat.domain.members.Member;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
-import javax.inject.Inject;
+import javax.transaction.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringJUnitConfig(DatabaseConfig.class)
-class MemberRepositoryTest {
+class MemberServiceTest {
 
-    private MemberRepository memberRepository;
+    private MemberService memberService;
 
     @Autowired
-    public MemberRepositoryTest(MemberRepository memberRepository) {
-        this.memberRepository = memberRepository;
+    public MemberServiceTest(MemberService memberService) {
+        this.memberService = memberService;
     }
 
-
     @Test
-    public void registerMember() {
+    @Transactional
+    void createMember_happyPath() {
         Member member = new Member.MemberBuilder()
                 .withMemberFirstName("Bob")
                 .withMemberLastName("Blob")
@@ -39,8 +40,10 @@ class MemberRepositoryTest {
                 .withPhoneNumber("0558468")
                 .withLicensePlate(new LicensePlate("354545", "654543543"))
                 .build();
-        memberRepository.registerMember(member);
+        memberService.createMember(member);
         assertThat(member.getMemberId()).isNotEqualTo(0);
     }
+
+
 
 }

@@ -1,6 +1,9 @@
 package be.biggerboat.domain.licenseplates;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
+import javax.transaction.Transactional;
 
 @Entity
 @Table(name = "LICENSE_PLATES")
@@ -10,6 +13,7 @@ public class LicensePlate {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "LICENSE_PLATE")
     private String plateNumber;
+
 
     @Column(name = "ISSUING_COUNTRY")
     private String issuingCountry;
