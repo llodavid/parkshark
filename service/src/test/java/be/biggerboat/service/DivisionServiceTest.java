@@ -25,6 +25,6 @@ class DivisionServiceTest {
 
         divisionService.createDivision(division);
 
-        assertThat(division.getId()).isNotNull();
+        assertThat(division.getId()).isNotEqualTo(0);
     }
 }

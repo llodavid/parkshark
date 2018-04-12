@@ -1,5 +1,7 @@
 package be.biggerboat.domain.divisions;
 
+import be.biggerboat.utilities.exceptions.ParksharkException;
+
 import javax.persistence.*;
 
 @Entity
@@ -25,9 +27,14 @@ public class Division {
     }
 
     public Division(String divisionName, String originalName, String director) {
-        this.divisionName = divisionName;
-        this.originalName = originalName;
-        this.director = director;
+        if (isFilledIn(divisionName) && isFilledIn(originalName) && isFilledIn(director)) {
+            this.divisionName = divisionName;
+            this.originalName = originalName;
+            this.director = director;
+        }
+        else{
+            throw new ParksharkException("Please fill in all the required fields.");
+        }
     }
 
     public String getDivisionName() {
@@ -44,5 +51,9 @@ public class Division {
 
     public int getId() {
         return id;
+    }
+
+    public boolean isFilledIn(String data){
+        return data != null && !data.isEmpty();
     }
 }
