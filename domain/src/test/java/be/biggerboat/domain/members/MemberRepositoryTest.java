@@ -22,24 +22,24 @@ class MemberRepositoryTest {
     }
 
 
-    @Test
-    public void registerMember() {
-        Member member = new Member.MemberBuilder()
-                .withMemberFirstName("Bob")
-                .withMemberLastName("Blob")
-                .withMemberEmail("Bobblob@live.com")
-                .withAddress(new Address.AddressBuilder()
-                        .withStreet("Kersktraat")
-                        .withHousenumber("24")
-                        .withZipcode("5436")
-                        .withCity("Blobcity")
-                        .withCountry("Blobland")
-                        .build())
-                .withPhoneNumber("0558468")
-                .build();
-
-        memberRepository.registerMember(member);
-        assertNotNull(memberRepository);
-    }
+//    @Test
+//    public void registerMember() {
+//        Member member = new Member.MemberBuilder()
+//                .withMemberFirstName("Bob")
+//                .withMemberLastName("Blob")
+//                .withMemberEmail("Bobblob@live.com")
+//                .withAddress(new Address.AddressBuilder()
+//                        .withStreet("Kersktraat")
+//                        .withHousenumber("24")
+//                        .withZipcode("5436")
+//                        .withCity("Blobcity")
+//                        .withCountry("Blobland")
+//                        .build())
+//                .withPhoneNumber("0558468")
+//                .build();
+//
+//        memberRepository.registerMember(member);
+//        assertNotNull(memberRepository);
+//    }
 
 }
