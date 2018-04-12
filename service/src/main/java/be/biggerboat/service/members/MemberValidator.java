@@ -8,7 +8,7 @@ import javax.inject.Named;
 public class MemberValidator   {
 
     public boolean isValidForCreation(Member member) {
-        return !isAFieldEmptyOrNull(member) && member.getMemberId() == null;
+        return !isAFieldEmptyOrNull(member) && member.getMemberId() == 0;
     }
 
     protected boolean isNull(Object object) {

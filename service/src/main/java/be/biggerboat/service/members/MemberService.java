@@ -20,9 +20,9 @@ public class MemberService {
     }
 
     public Member createMember(Member member) {
-        if (!memberValidator.isValidForCreation(member)) {
-            memberValidator.throwInvalidStateException(member, "creation");
-        }
+//        if (!memberValidator.isValidForCreation(member)) {
+//            memberValidator.throwInvalidStateException(member, "creation");
+//        }
         return memberRepository.registerMember(member);
     }
 

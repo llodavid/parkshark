@@ -15,7 +15,7 @@ public class Member {
     @SequenceGenerator(name = "member_seq", sequenceName = "member_id_seq", initialValue = 1, allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "member_seq")
     @Column(name = "MEMBER_ID")
-    private String memberId;
+    private int memberId;
 
     @Column(name = "FIRSTNAME")
     private String memberFirstName;
@@ -32,7 +32,8 @@ public class Member {
     @Embedded
     private Address address;
 
-    @Embedded
+    @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST}, optional = true)
+    @JoinColumn(name = "FK_MEMBER_ID")
     private LicensePlate licensePlate;
 
     @Column(name = "REGISTRATION_DATE")
@@ -52,7 +53,7 @@ public class Member {
         this.registrationDate = memberBuilder.registrationDate;
     }
 
-    public String getMemberId() {
+    public int getMemberId() {
         return memberId;
     }
 
@@ -97,8 +98,8 @@ public class Member {
                 '}';
     }
 
-    public static class MemberBuilder{
-        private String memberId;
+    public static class MemberBuilder {
+        private int memberId;
         private String memberFirstName;
         private String memberLastName;
         private String memberEmail;
@@ -107,61 +108,61 @@ public class Member {
         private LicensePlate licensePlate;
         private LocalDate registrationDate;
 
-        private boolean allFieldSet(){
-            return(isFilledIn(memberFirstName)
+        private boolean allFieldSet() {
+            return (isFilledIn(memberFirstName)
                     && isFilledIn(memberLastName)
                     && (isFilledIn(memberEmail)
-                        || isFilledIn(phoneNumber))
-                    && address != null
+                    || isFilledIn(phoneNumber))
+                    //&& address != null
                     //&& licensePlate != null
-                    );
+            );
         }
 
-        private boolean isFilledIn(String field){
+        private boolean isFilledIn(String field) {
             return field != null && !field.trim().equals("");
         }
 
-        public MemberBuilder withMemberId(String memberId){
+        public MemberBuilder withMemberId(int memberId) {
             this.memberId = memberId;
             return this;
         }
 
-        public MemberBuilder withMemberFirstName(String memberFirstName){
+        public MemberBuilder withMemberFirstName(String memberFirstName) {
             this.memberFirstName = memberFirstName;
             return this;
         }
 
-        public MemberBuilder withMemberLastName(String memberLastName){
+        public MemberBuilder withMemberLastName(String memberLastName) {
             this.memberLastName = memberLastName;
             return this;
         }
 
-        public MemberBuilder withMemberEmail(String memberEmail){
+        public MemberBuilder withMemberEmail(String memberEmail) {
             this.memberEmail = memberEmail;
             return this;
         }
 
-        public MemberBuilder withPhoneNumber(String phoneNumber){
+        public MemberBuilder withPhoneNumber(String phoneNumber) {
             this.phoneNumber = phoneNumber;
             return this;
         }
 
-        public MemberBuilder withAddress(Address address){
+        public MemberBuilder withAddress(Address address) {
             this.address = address;
             return this;
         }
 
-        public MemberBuilder withLicensePlate(LicensePlate licensePlate){
+        public MemberBuilder withLicensePlate(LicensePlate licensePlate) {
             this.licensePlate = licensePlate;
             return this;
         }
 
-        public MemberBuilder withRegistrationDate(LocalDate registrationDate){
+        public MemberBuilder withRegistrationDate(LocalDate registrationDate) {
             this.registrationDate = registrationDate;
             return this;
         }
 
-        public Member build(){
+        public Member build() {
             if (allFieldSet()) {
                 return new Member(this);
             }
