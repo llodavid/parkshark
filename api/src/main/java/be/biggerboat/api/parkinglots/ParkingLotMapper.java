@@ -13,6 +13,9 @@ public class ParkingLotMapper {
     @Autowired
     private AddressMapper addressMapper;
 
+    public ParkingLotMapper() {
+    }
+
     public ParkingLotDto toDto(ParkingLot parkingLot) {
         return new ParkingLotDto()
                 .withId(parkingLot.getId())
@@ -24,7 +27,7 @@ public class ParkingLotMapper {
     }
 
     public ParkingLot toDomain(ParkingLotDto parkingLotDto) {
-        return new ParkingLot(parkingLotDto.name, parkingLotDto.division, parkingLotDto.capacity, parkingLotDto.pricePerHour, addressMapper.toDomain(parkingLotDto.address));
-
+        //return new ParkingLot(parkingLotDto.name, parkingLotDto.division, parkingLotDto.capacity, parkingLotDto.pricePerHour, addressMapper.toDomain(parkingLotDto.address));
+        return null;
     }
 }

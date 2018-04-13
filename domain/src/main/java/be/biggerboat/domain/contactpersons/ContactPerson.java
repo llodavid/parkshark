@@ -3,13 +3,18 @@ package be.biggerboat.domain.contactpersons;
 import be.biggerboat.domain.addresses.Address;
 import be.biggerboat.utilities.exceptions.ParksharkException;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.Embedded;
+import javax.persistence.*;
 import java.util.Objects;
 
-@Embeddable
+@Entity
+@Table(name = "CONTACT_PERSONS")
 public class ContactPerson {
+
+    @Id
+    @SequenceGenerator(name = "contact_person_seq", sequenceName = "contact_person_id_seq", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "contact_person_seq")
+    @Column(name = "CONTACT_PERSON_ID")
+    private int id;
 
     @Column(name = "CONTACT_PERSON_NAME")
     private String name;
@@ -56,6 +61,10 @@ public class ContactPerson {
 
     public Address getAddress() {
         return address;
+    }
+
+    public int getId() {
+        return id;
     }
 
     @Override

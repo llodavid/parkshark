@@ -29,7 +29,8 @@ public class ParkingLot {
     private double pricePerHour;
     @Embedded
     private Address address;
-    @Embedded
+    @OneToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "FK_CONTACT_PERSON_ID_ID")
     private ContactPerson contactPerson;
 
 
