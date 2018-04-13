@@ -27,7 +27,7 @@ public class MemberValidator   {
                 || isNull(member.getAddress())
                 || isEmptyOrNull(member.getAddress().getHousenumber())
                 || isEmptyOrNull(member.getAddress().getStreet())
-                || isEmptyOrNull(member.getAddress().getCountry())
+                //|| isEmptyOrNull(member.getAddress().getCountry())
                 || isNull(member.getMemberEmail())
                 || isNull(member.getPhoneNumber())
                 //|| isNull(member.getLicensePlate())

@@ -1,5 +1,6 @@
 package be.biggerboat.api.parkinglots;
 
+import be.biggerboat.api.addresses.AddressDto;
 import be.biggerboat.domain.divisions.Division;
 
 import java.util.Objects;
@@ -10,6 +11,7 @@ public class ParkingLotDto {
     public Division division;
     public int capacity;
     public double pricePerHour;
+    public AddressDto address;
 
     public ParkingLotDto withId(int id){
         this.id = id;
@@ -33,6 +35,11 @@ public class ParkingLotDto {
 
     public ParkingLotDto withPricePerHour(double pricePerHour){
         this.pricePerHour = pricePerHour;
+        return this;
+    }
+
+    public ParkingLotDto withAddress(AddressDto address){
+        this.address = address;
         return this;
     }
 
