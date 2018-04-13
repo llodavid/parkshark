@@ -52,12 +52,13 @@ public class ParkingLotDto {
                 capacity == that.capacity &&
                 Double.compare(that.pricePerHour, pricePerHour) == 0 &&
                 Objects.equals(name, that.name) &&
-                Objects.equals(division, that.division);
+                Objects.equals(division, that.division) &&
+                Objects.equals(address, that.address);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, name, division, capacity, pricePerHour);
+        return Objects.hash(id, name, division, capacity, pricePerHour, address);
     }
 }

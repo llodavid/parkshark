@@ -1,6 +1,7 @@
 package be.biggerboat.domain.addresses;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Embeddable
 public class Zipcode {
@@ -26,5 +27,18 @@ public class Zipcode {
         return city;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Zipcode zipcode1 = (Zipcode) o;
+        return Objects.equals(getZipcode(), zipcode1.getZipcode()) &&
+                Objects.equals(getCity(), zipcode1.getCity());
+    }
 
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(getZipcode(), getCity());
+    }
 }

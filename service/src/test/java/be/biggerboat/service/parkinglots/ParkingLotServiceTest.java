@@ -16,8 +16,8 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace.NONE;
 
 @SpringJUnitConfig(DatabaseConfig.class)
-@DataJpaTest
-@AutoConfigureTestDatabase(replace = NONE)
+//@DataJpaTest
+//@AutoConfigureTestDatabase(replace = NONE)
 class ParkingLotServiceTest {
 
     private ParkingLotService parkingLotService;

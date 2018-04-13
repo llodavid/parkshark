@@ -1,6 +1,7 @@
 package be.biggerboat.domain.parkinglots;
 
 import be.biggerboat.domain.addresses.Address;
+import be.biggerboat.domain.contactpersons.ContactPerson;
 import be.biggerboat.domain.divisions.Division;
 import be.biggerboat.utilities.exceptions.ParksharkException;
 
@@ -20,28 +21,29 @@ public class ParkingLot {
     @Column(name = "PARKING_LOT_NAME")
     private String name;
     @OneToOne
-    @JoinColumn(name ="FK_DIVISION_ID")
+    @JoinColumn(name = "FK_DIVISION_ID")
     private Division division;
     @Column(name = "PARKING_CAPACITY")
     private int capacity;
     @Column(name = "PRICE_PER_HOUR")
     private double pricePerHour;
-
-
     @Embedded
     private Address address;
+    @Embedded
+    private ContactPerson contactPerson;
 
 
     public ParkingLot() {
     }
 
-    public ParkingLot(String name, Division division, int capacity, double pricePerHour, Address address) {
-        if (isFilledIn(name) && isFilledIn(capacity) && isFilledIn(pricePerHour) &&isFilledIn(division)) {
+    public ParkingLot(String name, Division division, int capacity, double pricePerHour, Address address, ContactPerson contactPerson) {
+        if (isFilledIn(name) && isFilledIn(capacity) && isFilledIn(pricePerHour) && isFilledIn(division) && isFilledIn(contactPerson)) {
             this.name = name;
             this.division = division;
             this.capacity = capacity;
             this.pricePerHour = pricePerHour;
             this.address = address;
+            this.contactPerson = contactPerson;
         } else {
             throw new ParksharkException("Please fill in all the required fields.");
         }
@@ -71,6 +73,10 @@ public class ParkingLot {
         return address;
     }
 
+    public ContactPerson getContactPerson() {
+        return contactPerson;
+    }
+
     public boolean isFilledIn(Object data) {
         return data != null;
     }
@@ -85,13 +91,13 @@ public class ParkingLot {
                 Double.compare(that.getPricePerHour(), getPricePerHour()) == 0 &&
                 Objects.equals(getName(), that.getName()) &&
                 Objects.equals(getDivision(), that.getDivision()) &&
-                Objects.equals(getAddress(), that.getAddress());
+                Objects.equals(getAddress(), that.getAddress()) &&
+                Objects.equals(getContactPerson(), that.getContactPerson());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getId(), getName(), getDivision(), getCapacity(), getPricePerHour(), getAddress());
+        return Objects.hash(getId(), getName(), getDivision(), getCapacity(), getPricePerHour(), getAddress(), getContactPerson());
     }
-
 }

@@ -2,14 +2,15 @@ package be.biggerboat.api.parkinglots;
 
 import be.biggerboat.api.addresses.AddressMapper;
 import be.biggerboat.domain.parkinglots.ParkingLot;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.inject.Inject;
+
 import javax.inject.Named;
 
 @Named
 public class ParkingLotMapper {
 
-    @Inject
+    @Autowired
     private AddressMapper addressMapper;
 
     public ParkingLotDto toDto(ParkingLot parkingLot) {
