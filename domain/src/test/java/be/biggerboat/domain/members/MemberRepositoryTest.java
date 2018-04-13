@@ -30,7 +30,6 @@ class MemberRepositoryTest {
                         .withStreet("Kersktraat")
                         .withHousenumber("24")
                         .withZipcode(new Zipcode("5412", "552114"))
-                        .withCountry("Blobland")
                         .build())
                 .withPhoneNumber("0558468")
                 //.withLicensePlate(new LicensePlate("354545", "654543543"))

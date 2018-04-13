@@ -9,17 +9,13 @@ public class Address {
     private String street;
     @Column(name = "HOUSENUMBER")
     private String housenumber;
-    @Column(name = "Country")
-    private String country;
 
-    @ManyToOne (cascade = CascadeType.PERSIST)
-    @JoinColumn (name = "FK_ZIPCODE")
+   @Embedded
     private Zipcode zipcode;
 
     private Address(AddressBuilder addressBuilder) {
         this.street = addressBuilder.street;
         this.housenumber = addressBuilder.housenumber;
-        this.country = addressBuilder.country;
         this.zipcode = addressBuilder.zipcode;
     }
 
@@ -32,10 +28,6 @@ public class Address {
 
     public String getHousenumber() {
         return housenumber;
-    }
-
-    public String getCountry() {
-        return country;
     }
 
     public Zipcode getZipcode() {
@@ -53,7 +45,6 @@ public class Address {
     public static class AddressBuilder {
         private String street;
         private String housenumber;
-        private String country;
         private Zipcode zipcode;
 
         public static AddressBuilder buildAddress() {
@@ -62,18 +53,12 @@ public class Address {
 
         public Address build() {
             if (allFieldsSet()) {
-                addDefaultCountryIfNotSet();
                 return new Address(this);
             } else {
                 throw new IllegalArgumentException(   "Please provide all the necessary arguments for the Address.");
             }
         }
 
-        private void addDefaultCountryIfNotSet() {
-            if (country == null) {
-                country = "Belgium";
-            }
-        }
 
         private boolean allFieldsSet() {
             return street != null && housenumber != null;
@@ -94,10 +79,6 @@ public class Address {
             return this;
         }
 
-        public AddressBuilder withCountry(String country) {
-            this.country = country;
-            return this;
-        }
     }
 
 }
