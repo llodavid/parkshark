@@ -32,13 +32,13 @@ public class Zipcode {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Zipcode zipcode1 = (Zipcode) o;
-        return Objects.equals(zipcode, zipcode1.zipcode) &&
-                Objects.equals(city, zipcode1.city);
+        return Objects.equals(getZipcode(), zipcode1.getZipcode()) &&
+                Objects.equals(getCity(), zipcode1.getCity());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(zipcode, city);
+        return Objects.hash(getZipcode(), getCity());
     }
 }

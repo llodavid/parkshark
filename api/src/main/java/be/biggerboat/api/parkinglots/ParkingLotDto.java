@@ -1,5 +1,6 @@
 package be.biggerboat.api.parkinglots;
 
+import be.biggerboat.api.addresses.AddressDto;
 import be.biggerboat.domain.divisions.Division;
 
 import java.util.Objects;
@@ -10,6 +11,7 @@ public class ParkingLotDto {
     public Division division;
     public int capacity;
     public double pricePerHour;
+    public AddressDto address;
 
     public ParkingLotDto withId(int id){
         this.id = id;
@@ -36,6 +38,11 @@ public class ParkingLotDto {
         return this;
     }
 
+    public ParkingLotDto withAddress(AddressDto address){
+        this.address = address;
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -45,12 +52,13 @@ public class ParkingLotDto {
                 capacity == that.capacity &&
                 Double.compare(that.pricePerHour, pricePerHour) == 0 &&
                 Objects.equals(name, that.name) &&
-                Objects.equals(division, that.division);
+                Objects.equals(division, that.division) &&
+                Objects.equals(address, that.address);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, name, division, capacity, pricePerHour);
+        return Objects.hash(id, name, division, capacity, pricePerHour, address);
     }
 }

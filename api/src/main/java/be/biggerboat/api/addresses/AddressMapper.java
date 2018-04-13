@@ -19,6 +19,7 @@ public class AddressMapper {
                 .withHousenumber(address.getHousenumber())
                 .withZipcode(address.getZipcode().getZipcode())
                 .withCity(address.getZipcode().getCity());
+
     }
 
     public Address toDomain(AddressDto addressDto) {
@@ -26,6 +27,7 @@ public class AddressMapper {
                 .withStreet(addressDto.street)
                 .withHousenumber(addressDto.housenumber)
                 .withZipcode(new Zipcode(addressDto.zipcode,addressDto.city))
+
                 .build();
     }
 

@@ -69,6 +69,7 @@ class MemberServiceTest {
                         .withStreet("Kersktraat")
                         .withHousenumber("24")
                         .withZipcode(new Zipcode("5436", "53454"))
+
                         .build())
                 .withPhoneNumber("0558468")
                 .withLicensePlate(new LicensePlate("354545", "654543543"))

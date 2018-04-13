@@ -1,8 +1,7 @@
 package be.biggerboat.domain.parkinglots;
 
-import be.biggerboat.domain.divisions.Division;
-import org.springframework.stereotype.Repository;
 
+import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;

@@ -1,5 +1,7 @@
 package be.biggerboat.service.parkinglots;
 
+import be.biggerboat.domain.addresses.Address;
+import be.biggerboat.domain.addresses.Zipcode;
 import be.biggerboat.domain.databaseconfig.DatabaseConfig;
 import be.biggerboat.domain.divisions.Division;
 import be.biggerboat.domain.divisions.DivisionRepository;
@@ -14,8 +16,8 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace.NONE;
 
 @SpringJUnitConfig(DatabaseConfig.class)
-@DataJpaTest
-@AutoConfigureTestDatabase(replace = NONE)
+//@DataJpaTest
+//@AutoConfigureTestDatabase(replace = NONE)
 class ParkingLotServiceTest {
 
     private ParkingLotService parkingLotService;
@@ -31,7 +33,9 @@ class ParkingLotServiceTest {
     void createParkingLot() {
         Division division = new Division("difnsdjg", "lsgjlsd", "fsfjdj");
         divisionRepository.save(division);
-        ParkingLot parkingLot = new ParkingLot("parkinglottest", division, 5, 50.3);
+        Zipcode zipcode = new Zipcode("dfdfdf", "dddfdf");
+        Address address = new Address.AddressBuilder().withStreet("eerer").withZipcode(zipcode).withHousenumber("5454").build();
+        ParkingLot parkingLot = new ParkingLot("parkingTest", division, 10, 50.2, address);
         parkingLotService.createParkingLot(parkingLot);
 
         Assertions.assertThat(parkingLot.getId()).isNotEqualTo(0);

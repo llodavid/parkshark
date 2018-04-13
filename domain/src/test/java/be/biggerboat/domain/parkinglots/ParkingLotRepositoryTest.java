@@ -1,5 +1,8 @@
 package be.biggerboat.domain.parkinglots;
 
+import be.biggerboat.domain.addresses.Address;
+import be.biggerboat.domain.addresses.Zipcode;
+import be.biggerboat.domain.contactpersons.ContactPerson;
 import be.biggerboat.domain.databaseconfig.DatabaseConfig;
 import be.biggerboat.domain.divisions.Division;
 import be.biggerboat.domain.divisions.DivisionRepository;
@@ -31,8 +34,10 @@ class ParkingLotRepositoryTest {
     void save() {
         Division division = new Division("divisionTest", "originalNameTest", "directorTest");
         divisionRepository.save(division);
-
-        ParkingLot parkingLot = new ParkingLot("parkingTest", division, 10, 50.2);
+        Zipcode zipcode = new Zipcode("dfdfdf", "dddfdf");
+        Address address = new Address.AddressBuilder().withStreet("eerer").withZipcode(zipcode).withHousenumber("5454").build();
+        ContactPerson contactPerson = new ContactPerson("jkdsgj", "lklkdkjfd", "mjmfdmljf", "dfmjlkd@live.com", address);
+        ParkingLot parkingLot = new ParkingLot("parkingTest", division, 10, 50.2, address, contactPerson);
 
         parkingLotRepository.save(parkingLot);
 

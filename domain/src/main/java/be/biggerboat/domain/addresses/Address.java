@@ -36,6 +36,22 @@ public class Address {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Address address = (Address) o;
+        return Objects.equals(getStreet(), address.getStreet()) &&
+                Objects.equals(getHousenumber(), address.getHousenumber()) &&
+                Objects.equals(getZipcode(), address.getZipcode());
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(getStreet(), getHousenumber(), getZipcode());
+    }
+
+    @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer();
         sb.append(", \n\tstreet='").append(street).append('\'');
