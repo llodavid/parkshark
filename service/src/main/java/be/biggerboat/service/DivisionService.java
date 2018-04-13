@@ -28,6 +28,8 @@ public class DivisionService {
         return divisionRepository.getDivisions();
     }
 
+    public Division readDivision(int divisionID) {return divisionRepository.getDivision(divisionID);}
+
     public Division createSubDivision(int divisionId, Division subDivision) {
         divisionRepository.getDivision(divisionId)
                 .addSubDivision(subDivision);

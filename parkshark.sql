@@ -47,6 +47,7 @@ PARKING_CAPACITY NUMBER(6,0) NOT NULL,
 FK_CONTACT_PERSON_ID NUMBER (6,0) NOT NULL,
 ADDRESS VARCHAR(50),
 FK_ZIPCODE VARCHAR(50),
+PRICE_PER_HOUR NUMBER (6,2) NOT NULL,
 CONSTRAINT parking_lots_pk PRIMARY KEY (parking_lot_id),
 CONSTRAINT parking_lots_divisions_fk FOREIGN KEY (fk_division_id) REFERENCES divisions (division_id),
 CONSTRAINT parking_lots_zipcodes_fk FOREIGN KEY (fk_zipcode) REFERENCES zipcodes (zipcode)
