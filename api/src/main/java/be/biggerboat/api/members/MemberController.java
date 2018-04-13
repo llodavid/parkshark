@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
@@ -28,6 +31,14 @@ public class MemberController {
                         memberMapper.toDomain(memberDto)
                 )
         );
+    }
+
+    @GetMapping(produces = APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public List<MemberDto> readAllMembers() {
+        return memberService.readAllMembers().stream()
+                .map(division -> memberMapper.toDto(division))
+                .collect(Collectors.toList());
     }
 
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Named;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -31,6 +32,10 @@ public class MemberService {
         memberRepository.readMemberbyId(memberId)
         .addLicensePlate(licensePlate);
         return licensePlate;
+    }
+
+    public List<Member> readAllMembers() {
+        return memberRepository.readAllMembers();
     }
 
 }

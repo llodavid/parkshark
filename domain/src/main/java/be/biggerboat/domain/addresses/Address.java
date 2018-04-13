@@ -1,6 +1,7 @@
 package be.biggerboat.domain.addresses;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Embeddable
 public class Address {
@@ -40,6 +41,21 @@ public class Address {
         sb.append(", \n\tstreet='").append(street).append('\'');
         sb.append(", \n\thousenumber='").append(housenumber).append('\'');
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Address address = (Address) o;
+        return Objects.equals(street, address.street) &&
+                Objects.equals(housenumber, address.housenumber) &&
+                Objects.equals(zipcode, address.zipcode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(street, housenumber, zipcode);
     }
 
     public static class AddressBuilder {

@@ -4,6 +4,7 @@ import be.biggerboat.domain.addresses.Address;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.inject.Named;
+import java.util.Objects;
 
 @Named
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -36,4 +37,20 @@ public class AddressDto {
         return this;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AddressDto that = (AddressDto) o;
+        return Objects.equals(street, that.street) &&
+                Objects.equals(housenumber, that.housenumber) &&
+                Objects.equals(zipcode, that.zipcode) &&
+                Objects.equals(city, that.city);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(street, housenumber, zipcode, city);
+    }
 }

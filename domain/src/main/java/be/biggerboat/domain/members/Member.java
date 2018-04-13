@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "MEMBERS")
@@ -98,9 +99,29 @@ public class Member {
                 ", memberEmail='" + memberEmail + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", address=" + address + '\'' +
-                ", licensePlate=" + licensePlates + '\'' +
+                //", licensePlate=" + licensePlates + '\'' +
                 ", registrationDate=" + registrationDate +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Member member = (Member) o;
+        return memberId == member.memberId &&
+                Objects.equals(memberFirstName, member.memberFirstName) &&
+                Objects.equals(memberLastName, member.memberLastName) &&
+                Objects.equals(memberEmail, member.memberEmail) &&
+                Objects.equals(phoneNumber, member.phoneNumber)&&
+                Objects.equals(address, member.address) &&
+                Objects.equals(registrationDate, member.registrationDate);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(memberId, memberFirstName, memberLastName, memberEmail, phoneNumber, address, registrationDate);
     }
 
     public static class MemberBuilder {

@@ -20,6 +20,7 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,6 +31,9 @@ import static org.springframework.boot.SpringApplication.run;
 @ExtendWith(SpringExtension.class)
 
 class MemberControllerTest {
+
+    Member member1;
+    Member member2;
 
     @LocalServerPort
     private int port;
@@ -64,6 +68,47 @@ class MemberControllerTest {
                 .postForObject(String.format("http://localhost:%s/%s", port, "members"), memberDto, MemberDto.class);
 
         assertThat(memberDto1.memberId).isNotEqualTo(0);
+    }
+
+    @Test
+    void readAllMembers_happyPath() {
+        member1 = new Member.MemberBuilder()
+                .withMemberFirstName("Bob")
+                .withMemberLastName("Blob")
+                .withMemberEmail("Bobblob@live.com")
+                .withAddress(new Address.AddressBuilder()
+                        .withStreet("Kersktraat")
+                        .withHousenumber("24")
+                        .withZipcode(new Zipcode("5412", "552114"))
+                        .build())
+                .withPhoneNumber("0558468")
+                .withLicensePlate(new LicensePlate("354545", "The Netherlands"))
+                .build();
+
+        member2 = new Member.MemberBuilder()
+                .withMemberFirstName("Jan")
+                .withMemberLastName("Janssen")
+                .withMemberEmail("Janjanssen@live.com")
+                .withAddress(new Address.AddressBuilder()
+                        .withStreet("Kersktraat")
+                        .withHousenumber("25")
+                        .withZipcode(new Zipcode("5412", "552114"))
+                        .build())
+                .withPhoneNumber("05584324")
+                .withLicensePlate(new LicensePlate("354125", "Belgium"))
+                .build();
+
+        memberRepository.registerMember(member1);
+        memberRepository.registerMember(member2);
+
+        MemberDto[] memberDtoArray = new TestRestTemplate()
+                .getForObject(String.format("http://localhost:%s/%s", port, "members"), MemberDto[].class);
+        List<MemberDto> memberList = Arrays.asList(memberDtoArray);
+
+        MemberDto memberDto1 = memberMapper.toDto(member1);
+        MemberDto memberDto2 = memberMapper.toDto(member2);
+
+        Assertions.assertThat(memberList).contains(memberDto1, memberDto2);
     }
 
 
