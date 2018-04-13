@@ -3,6 +3,7 @@ package be.biggerboat.domain.members;
 import be.biggerboat.domain.addresses.Address;
 import be.biggerboat.domain.addresses.Zipcode;
 import be.biggerboat.domain.databaseconfig.DatabaseConfig;
+import be.biggerboat.domain.licenseplates.LicensePlate;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
@@ -21,7 +22,7 @@ class MemberRepositoryTest {
 
 
     @Test
-    public void registerMember() {
+    public void registerMember_happyPath() {
         Member member = new Member.MemberBuilder()
                 .withMemberFirstName("Bob")
                 .withMemberLastName("Blob")
@@ -32,7 +33,7 @@ class MemberRepositoryTest {
                         .withZipcode(new Zipcode("5412", "552114"))
                         .build())
                 .withPhoneNumber("0558468")
-                //.withLicensePlate(new LicensePlate("354545", "654543543"))
+                .withLicensePlate(new LicensePlate("354545", "654543543"))
                 .build();
         memberRepository.registerMember(member);
         assertThat(member.getMemberId()).isNotEqualTo(0);

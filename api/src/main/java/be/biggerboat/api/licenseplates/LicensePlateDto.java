@@ -1,10 +1,12 @@
 package be.biggerboat.api.licenseplates;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.inject.Named;
 
 @Named
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class LicensePlateDto {
     public String plateNumber;
     public String issuingCountry;

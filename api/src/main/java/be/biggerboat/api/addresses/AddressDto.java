@@ -1,16 +1,17 @@
 package be.biggerboat.api.addresses;
 
 import be.biggerboat.domain.addresses.Address;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.inject.Named;
 
 @Named
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class AddressDto {
     public String street;
     public String housenumber;
     public String zipcode;
     public String city;
-    public String country;
 
     public AddressDto() {
     }
@@ -32,11 +33,6 @@ public class AddressDto {
 
     public AddressDto withCity(String city) {
         this.city = city;
-        return this;
-    }
-
-    public AddressDto withCountry(String country) {
-        this.country = country;
         return this;
     }
 

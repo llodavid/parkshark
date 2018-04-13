@@ -10,6 +10,9 @@ public class Zipcode {
     @Column(name = "CITY")
     private String city;
 
+    public Zipcode() {
+    }
+
     public Zipcode(String zipcode, String city) {
         this.zipcode = zipcode;
         this.city = city;

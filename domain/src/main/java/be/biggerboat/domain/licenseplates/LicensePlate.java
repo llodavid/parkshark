@@ -10,20 +10,27 @@ import javax.transaction.Transactional;
 public class LicensePlate {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "license_plate_seq", sequenceName = "license_plate_id_sequence", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "license_plate_seq")
+    @Column(name = "LICENSE_PLATE_ID")
+    private int licenseId;
+
     @Column(name = "LICENSE_PLATE")
     private String plateNumber;
-
 
     @Column(name = "ISSUING_COUNTRY")
     private String issuingCountry;
 
-    public LicensePlate() {
+    private LicensePlate() {
     }
 
     public LicensePlate(String plateNumber, String issuingCountry) {
         this.plateNumber = plateNumber;
         this.issuingCountry = issuingCountry;
+    }
+
+    public int getLicenseId() {
+        return licenseId;
     }
 
     public String getPlateNumber() {

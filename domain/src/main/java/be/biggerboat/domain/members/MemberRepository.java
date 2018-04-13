@@ -21,4 +21,7 @@ public class MemberRepository {
         return member;
     }
 
+    public Member readMemberbyId(int memberId) {
+        return entityManager.find(Member.class, memberId);
+    }
 }
