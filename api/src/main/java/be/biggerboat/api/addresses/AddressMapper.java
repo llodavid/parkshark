@@ -18,8 +18,7 @@ public class AddressMapper {
                 .withStreet(address.getStreet())
                 .withHousenumber(address.getHousenumber())
                 .withZipcode(address.getZipcode().getZipcode())
-                .withCity(address.getZipcode().getCity())
-                .withCountry(address.getCountry());
+                .withCity(address.getZipcode().getCity());
     }
 
     public Address toDomain(AddressDto addressDto) {
@@ -27,7 +26,6 @@ public class AddressMapper {
                 .withStreet(addressDto.street)
                 .withHousenumber(addressDto.housenumber)
                 .withZipcode(new Zipcode(addressDto.zipcode,addressDto.city))
-                .withCountry(addressDto.country)
                 .build();
     }
 

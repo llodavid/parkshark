@@ -6,6 +6,7 @@ import be.biggerboat.domain.members.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.inject.Named;
+import java.util.stream.Collectors;
 
 @Named
 public class MemberMapper {
@@ -27,7 +28,9 @@ public class MemberMapper {
                 .withMemberEmail(member.getMemberEmail())
                 .withPhoneNumber(member.getPhoneNumber())
                 .withAddress(addressMapper.toDto(member.getAddress()))
-                //.withLicensePlate(licensePlateMapper.toDto((member.getLicensePlate())))
+                .withLicensePlates(member.getLicensePlate().stream()
+                        .map(licensePlate -> licensePlateMapper.toDto(licensePlate))
+                        .collect(Collectors.toList()))
                 .withRegistrationDate(member.getRegistrationDate());
     }
 
@@ -38,7 +41,9 @@ public class MemberMapper {
                 .withMemberEmail(memberDto.memberEmail)
                 .withPhoneNumber(memberDto.phoneNumber)
                 .withAddress(addressMapper.toDomain(memberDto.address))
-                //.withLicensePlate(licensePlateMapper.toDomain(memberDto.licensePlate))
+                .withLicensePlates(memberDto.licensePlates.stream()
+                        .map(licensePlateDto -> licensePlateMapper.toDomain(licensePlateDto))
+                        .collect(Collectors.toList()))
                 .build();
     }
 

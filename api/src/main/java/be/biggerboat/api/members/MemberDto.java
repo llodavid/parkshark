@@ -2,14 +2,12 @@ package be.biggerboat.api.members;
 
 import be.biggerboat.api.addresses.AddressDto;
 import be.biggerboat.api.licenseplates.LicensePlateDto;
-import be.biggerboat.domain.addresses.Address;
-import be.biggerboat.domain.licenseplates.LicensePlate;
-import be.biggerboat.domain.members.Member;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.Column;
-import javax.persistence.Embedded;
 import java.time.LocalDate;
+import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class MemberDto {
 
     public int memberId;
@@ -19,7 +17,7 @@ public class MemberDto {
     public String phoneNumber;
     public AddressDto address;
     public LocalDate registrationDate;
-    public LicensePlateDto licensePlate;
+    public List<LicensePlateDto> licensePlates;
 
 
     public MemberDto() {
@@ -56,8 +54,8 @@ public class MemberDto {
         return this;
     }
 
-    public MemberDto withLicensePlate(LicensePlateDto licensePlate) {
-        this.licensePlate = licensePlate;
+    public MemberDto withLicensePlates(List<LicensePlateDto> licensePlates) {
+        this.licensePlates = licensePlates;
         return this;
     }
 

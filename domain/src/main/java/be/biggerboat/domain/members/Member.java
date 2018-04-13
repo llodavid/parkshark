@@ -6,6 +6,8 @@ import be.biggerboat.utilities.exceptions.ParksharkException;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "MEMBERS")
@@ -32,9 +34,9 @@ public class Member {
     @Embedded
     private Address address;
 
-//    @OneToOne(cascade = {CascadeType.PERSIST}, optional = true)
-//    @JoinColumn(name = "FK_MEMBER_ID")
-//    private LicensePlate licensePlate;
+    @OneToMany(cascade = {CascadeType.PERSIST})
+    @JoinColumn(name = "FK_MEMBER_ID")
+    private List<LicensePlate> licensePlates;
 
     @Column(name = "REGISTRATION_DATE")
     private LocalDate registrationDate;
@@ -48,8 +50,12 @@ public class Member {
         this.memberEmail = memberBuilder.memberEmail;
         this.phoneNumber = memberBuilder.phoneNumber;
         this.address = memberBuilder.address;
-       // this.licensePlate = memberBuilder.licensePlate;
-        this.registrationDate = memberBuilder.registrationDate;
+        this.licensePlates = memberBuilder.licensePlates;
+        this.registrationDate = LocalDate.now();
+    }
+
+    public void addLicensePlate(LicensePlate licensePlate) {
+        licensePlates.add(licensePlate);
     }
 
     public int getMemberId() {
@@ -76,9 +82,9 @@ public class Member {
         return address;
     }
 
-   // public LicensePlate getLicensePlate() {
-//        return licensePlate;
-//    }
+    public List<LicensePlate> getLicensePlate() {
+        return licensePlates;
+    }
 
     public LocalDate getRegistrationDate() {
         return registrationDate;
@@ -92,7 +98,7 @@ public class Member {
                 ", memberEmail='" + memberEmail + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", address=" + address + '\'' +
-                //", licensePlate=" + licensePlate + '\'' +
+                ", licensePlate=" + licensePlates + '\'' +
                 ", registrationDate=" + registrationDate +
                 '}';
     }
@@ -103,7 +109,7 @@ public class Member {
         private String memberEmail;
         private String phoneNumber;
         private Address address;
-        private LicensePlate licensePlate;
+        private List<LicensePlate> licensePlates;
         private LocalDate registrationDate;
 
         private boolean allFieldSet() {
@@ -111,15 +117,18 @@ public class Member {
                     && isFilledIn(memberLastName)
                     && (isFilledIn(memberEmail)
                     || isFilledIn(phoneNumber))
-                    //&& address != null
-                    //&& licensePlate != null
+                    && address != null
+                    && licensePlates != null
             );
+        }
+
+        public MemberBuilder() {
+            licensePlates = new ArrayList<>();
         }
 
         private boolean isFilledIn(String field) {
             return field != null && !field.trim().equals("");
         }
-
 
         public MemberBuilder withMemberFirstName(String memberFirstName) {
             this.memberFirstName = memberFirstName;
@@ -147,7 +156,12 @@ public class Member {
         }
 
         public MemberBuilder withLicensePlate(LicensePlate licensePlate) {
-            this.licensePlate = licensePlate;
+            this.licensePlates.add(licensePlate);
+            return this;
+        }
+
+        public MemberBuilder withLicensePlates(List<LicensePlate> licensePlates) {
+            this.licensePlates = licensePlates;
             return this;
         }
 

@@ -69,10 +69,11 @@ CONSTRAINT member_pk PRIMARY KEY (member_id)
 
 CREATE TABLE LICENSE_PLATES
 (
+LICENSE_PLATE_ID number,
 LICENSE_PLATE VARCHAR2(50),
 ISSUING_COUNTRY VARCHAR2(50),
 FK_MEMBER_ID NUMBER(6,0),
-CONSTRAINT license_plates_pk PRIMARY KEY (license_plate),
+CONSTRAINT license_plates_pk PRIMARY KEY (license_plate_id),
 CONSTRAINT  members_pk FOREIGN KEY (fk_member_id) REFERENCES members (member_id)
 );
 
@@ -93,6 +94,10 @@ START WITH 1
 INCREMENT BY 1;
 
 CREATE SEQUENCE building_type_seq
+START WITH 1
+INCREMENT BY 1;
+
+CREATE SEQUENCE license_plate_id_sequence
 START WITH 1
 INCREMENT BY 1;
 

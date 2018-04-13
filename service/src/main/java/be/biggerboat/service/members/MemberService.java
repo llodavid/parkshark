@@ -1,5 +1,6 @@
 package be.biggerboat.service.members;
 
+import be.biggerboat.domain.licenseplates.LicensePlate;
 import be.biggerboat.domain.members.Member;
 import be.biggerboat.domain.members.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,12 @@ public class MemberService {
 //            memberValidator.throwInvalidStateException(member, "creation");
 //        }
         return memberRepository.registerMember(member);
+    }
+
+    public LicensePlate createLicensePlate(int memberId, LicensePlate licensePlate) {
+        memberRepository.readMemberbyId(memberId)
+        .addLicensePlate(licensePlate);
+        return licensePlate;
     }
 
 }

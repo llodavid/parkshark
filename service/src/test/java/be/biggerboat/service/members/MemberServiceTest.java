@@ -12,7 +12,6 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import javax.transaction.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringJUnitConfig(DatabaseConfig.class)
 class MemberServiceTest {
@@ -35,13 +34,35 @@ class MemberServiceTest {
                         .withStreet("Kersktraat")
                         .withHousenumber("24")
                         .withZipcode(new Zipcode("5436", "53454"))
-                        .withCountry("Blobland")
                         .build())
                 .withPhoneNumber("0558468")
                 .withLicensePlate(new LicensePlate("354545", "654543543"))
                 .build();
         memberService.createMember(member);
         assertThat(member.getMemberId()).isNotEqualTo(0);
+    }
+
+    @Test
+    void createLicensePlate_HappyPath() {
+        Member member = new Member.MemberBuilder()
+                .withMemberFirstName("Bob")
+                .withMemberLastName("Blob")
+                .withMemberEmail("Bobblob@live.com")
+                .withAddress(new Address.AddressBuilder()
+                        .withStreet("Kersktraat")
+                        .withHousenumber("24")
+                        .withZipcode(new Zipcode("5436", "53454"))
+                        .build())
+                .withPhoneNumber("0558468")
+                .withLicensePlate(new LicensePlate("354545", "654543543"))
+                .build();
+        memberService.createMember(member);
+
+        LicensePlate licensePlate = new LicensePlate("123546", "Belgium");
+
+        memberService.createLicensePlate(member.getMemberId(), licensePlate);
+
+        assertThat(licensePlate.getLicenseId()).isNotEqualTo(0);
     }
 
 }
