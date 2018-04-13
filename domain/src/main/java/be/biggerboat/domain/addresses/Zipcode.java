@@ -2,11 +2,9 @@ package be.biggerboat.domain.addresses;
 
 import javax.persistence.*;
 
-@Entity
-@Table (name = "ZIPCODES")
+@Embeddable
 public class Zipcode {
 
-    @Id
     @Column(name = "ZIPCODE")
     private String zipcode;
     @Column(name = "CITY")

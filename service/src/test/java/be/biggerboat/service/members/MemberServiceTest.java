@@ -44,6 +44,4 @@ class MemberServiceTest {
         assertThat(member.getMemberId()).isNotEqualTo(0);
     }
 
-
-
 }
