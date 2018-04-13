@@ -5,12 +5,15 @@ import be.biggerboat.domain.divisions.Division;
 import be.biggerboat.utilities.exceptions.ParksharkException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace.NONE;
 
 @SpringJUnitConfig(DatabaseConfig.class)
 //@DataJpaTest
@@ -57,6 +60,8 @@ class DivisionServiceTest {
         int dadId = division.getId();
 
         assertThat(divisionService.createSubDivision(dadId, subDivision).getId()).isNotEqualTo(0);
+        assertThat(divisionService.readDivision(dadId).getSubDivisions().size()).isEqualTo(1);
+        assertThat(divisionService.readDivision(dadId).getSubDivisions()).contains(subDivision);
 
     }
 

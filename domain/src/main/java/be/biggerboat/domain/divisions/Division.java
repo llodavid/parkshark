@@ -26,7 +26,7 @@ public class Division {
     @Column(name = "DIRECTOR")
     private String director;
 
-    @OneToMany (cascade=CascadeType.PERSIST)
+    @OneToMany (fetch = FetchType.EAGER, cascade=CascadeType.PERSIST)
     @JoinColumn(name="PARENT_DIVISION_ID")
     private List<Division> subDivisions;
 
@@ -63,6 +63,10 @@ public class Division {
 
     public int getId() {
         return id;
+    }
+
+    public List<Division> getSubDivisions() {
+        return subDivisions;
     }
 
     public boolean isFilledIn(String data){
